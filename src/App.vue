@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <div v-bind:class="image !== '' ? 'container justify-start' : 'container justify-center'">
+    <div class="container">
       <div v-if="loading" class="loading-container">
         <p class="loading">loading...</p>
       </div>
       <form @submit.prevent="fetchData">
         <input class="search" placeholder="find art." type="text" v-model="searchQuery" />
-        <div class="image-container">
-          <p class="title" v-if="image !== ''">{{title}}</p>
-          <img v-if="image !== ''" class="image" v-bind:src="image" @load="finishedLoad">
-        </div>
       </form>
+      <div class="image-container" v-if="image !== ''">
+        <p class="title" v-if="image !== ''">{{title}}</p>
+        <img v-if="image !== ''" class="image" :src="image" @load="finishedLoad">
+      </div>
       <p v-if="error" class="no-results">No results, try again.</p>
-      <div :style="backgroundImage"/>
+      <div class="background-image"/>
     </div>
   </div>
 </template>
@@ -56,21 +56,6 @@ export default {
     finishedLoad () {
       this.loading = false;
     }
-  },
-  computed: {
-    backgroundImage () {
-      return {
-        "background-image": `url("https://images.unsplash.com/photo-1598103586054-c4b456cbddc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9")`,
-        "background-size": "50%",
-        "background-position": "center",
-        "background-repeat": "no-repeat",
-        position: "absolute",
-        width: "100vw",
-        height: "100vh",
-        "z-index": -1,
-        filter: "grayscale(100%)"
-      }
-    }
   }
 }
 </script>
@@ -81,6 +66,28 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Raleway", sans-serif;
+}
+
+.background-image {
+  background-image: url("https://images.unsplash.com/photo-1598103586054-c4b456cbddc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  filter: grayscale(100%);
+}
+@media screen and (max-width: 1024px) {
+  .background-image {
+    background-size: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .background-image {
+    background-size: 90%;
+  }
 }
 
 .loading-container {
@@ -109,25 +116,19 @@ export default {
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
+  overflow-x: hidden;
 }
 
 form {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  max-height: 100%;
 }
 
 .image-container {
@@ -163,7 +164,7 @@ form {
   background-color: #222;
   box-shadow: 0 0 15px  rgba(0,0,0,0.4);
   color: white;
-  margin-top: 20px;
+  margin: 20px 0px;
   padding: 10px 15px;
   width: 270px;
   outline: none;
@@ -199,10 +200,9 @@ form {
 }
 
 .no-results {
-  margin-top: 50px;
+  margin-top: 20px;
   font-size: 30px;
   font-weight: 600;
-  color: white;
 }
 
 </style>
