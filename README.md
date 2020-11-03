@@ -1,23 +1,15 @@
 # a r t
 
-## Instalar as dependências
+### Instalar as dependências
 ```
 yarn
+```
+ou
+```
+yarn install
 ```
 
 ### Rodar o projeto
 ```
 yarn serve
 ```
-
-### Build
-```
-yarn build
-```
-
-### Lint
-```
-yarn lint
-```
-
-
