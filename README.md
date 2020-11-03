@@ -1,24 +1,23 @@
-# vue-fast-art-app
+# a r t
 
-## Project setup
+## Instalar as dependências
 ```
-yarn install
+yarn
 ```
 
-### Compiles and hot-reloads for development
+### Rodar o projeto
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Build
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### Lint
 ```
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
